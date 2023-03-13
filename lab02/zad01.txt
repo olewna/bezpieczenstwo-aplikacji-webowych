@@ -1,0 +1,21 @@
+Zadanie 1. Wstęp do konteneryzacji Keycloaka
+
+docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.0.1 start-dev
+
+
+Korzystając z przykładu - https://www.keycloak.org/getting-started/getting-started-docker, wystartuj keycloak w kontenerze oraz stwórz realm, usera i client.
+Sprawdź czy przykładowe SPA działa ze stworzonym userem.
+
+
+Zadanie 2.
+jwt.io
+
+Używając Postmana (lub innego narzędzia) postaramy się otrzymać Access Token.
+Authorization code jest to JWT dzięku któremy mamy dostęp do resource.
+Otwórz stronę well-known endpoints - http://localhost:8080/realms/{{nazwa_realmu}}/.well-known/openid-configuration
+Z powyższej strony potrzebujemy: authorization_endpoint oraz token_endpoint.
+Potrzebujemy również client_id i client_secret naszego clienta stworzonego w poprzednim zadaniu.
+Dodajemy w naszym kliencie jeszcze jeden Valid redirect URI: https://oauth.pstmn.io/v1/callback
+musimy również włączyć Client authentication oraz Authorization.
+Konfigurujemy Postmana i próbujemy dostać Access Token.
+Proszę sprawdzić co zawiera nasz Authorization Code (strona jwt.io)
